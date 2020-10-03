@@ -1,20 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
-  const onChange = () => {}
+  //state para iniciar sesion
+  const [ usuario, guardarUsuario ] = useState({
+    email: '',
+    password: ''
+  });
+
+  //extraer de usuario
+  const { email, password } = usuario;
+
+  const onChange = (e) => {
+    guardarUsuario({
+      ...usuario,
+      [e.target.name] : e.target.value
+    })
+  }
+
+  //cuando el usuario quiere iniciar sesion
+  const onSubmit = e => {
+    e.preventDefault();
+
+    //validar que no haya campos vacios
+
+    //pasarlo al action
+
+  }
 
   return(
     <div className="form-usuario">
       <div className="contenedor-form sombra-dark">
         <h1>Iniciar sesion</h1>
-        <form>
+        <form
+          onSubmit={onSubmit}
+        >
           <div className="campo-form">
             <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
               name="email"
+              value={email}
               placeholder="Tu E-mail"
               onChange={onChange}
             />
@@ -26,6 +54,7 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
+              value={password}
               placeholder="Tu Password"
               onChange={onChange}
             />
