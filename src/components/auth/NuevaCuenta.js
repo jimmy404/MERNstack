@@ -44,7 +44,7 @@ const NuevaCuenta = () => {
               type="text"
               id="nombre"
               name="nombre"
-              value={email}
+              value={nombre}
               placeholder="Tu Nombre"
               onChange={onChange}
             />
@@ -80,7 +80,7 @@ const NuevaCuenta = () => {
               type="password"
               id="confirmar"
               name="confirmar"
-              value={password}
+              value={confirmar}
               placeholder="Repite tu Password"
               onChange={onChange}
             />
