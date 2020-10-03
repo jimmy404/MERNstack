@@ -5,12 +5,14 @@ const NuevaCuenta = () => {
 
   //state para iniciar sesion
   const [ usuario, guardarUsuario ] = useState({
+    nombre: '',
     email: '',
-    password: ''
+    password: '',
+    confirmar: ''
   });
 
   //extraer de usuario
-  const { email, password } = usuario;
+  const { nombre, email, password, confirmar } = usuario;
 
   const onChange = (e) => {
     guardarUsuario({
