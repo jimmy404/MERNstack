@@ -6,7 +6,7 @@ const NuevoProyecto = () => {
 
   //obtener state del formulario
   const proyectosContext = useContext(proyectoContext);
-  const { formulario } = proyectosContext;
+  const { formulario, mostrarFormulario } = proyectosContext;
 
 
   //state para proyecto
@@ -40,11 +40,15 @@ const NuevoProyecto = () => {
   }
 
 
+  //mostrar el form
+  const onClickFormulario = () => {mostrarFormulario()};
+
   return(
     <Fragment>
       <button
         type="button"
         className="btn btn-block btn-primario"
+        onClick={onClickFormulario}
       >Nuevo Proyecto</button>
 
     {
