@@ -27,6 +27,10 @@ const NuevaCuenta = () => {
 
     //validar que no haya campos vacios
 
+    //password minimo de 6 caracteres
+
+    //coincidencia de passwords
+
     //pasarlo al action
 
   }
