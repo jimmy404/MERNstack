@@ -2,15 +2,23 @@ import React, { useReducer } from 'react';
 
 import proyectoContext from './proyectoContext';
 import proyectoReducer from './proyectoReducer';
-import { FORMULARIO_PROYECTO } from '../../types';
+import {
+  FORMULARIO_PROYECTO,
+  OBTENER_PROYECTOS } from '../../types';
+
+
+
 
 const ProyectoState = props => {
+
+  const proyectos = [
+    { id: 1, nombre: 'Tienda virtual' },
+    { id: 2, nombre: 'Intranet' },
+    { id: 3, nombre: 'Redux' }
+  ];
+
   const initialState = {
-    proyectos: [
-      { id: 1, nombre: 'Tienda virtual' },
-      { id: 2, nombre: 'Intranet' },
-      { id: 3, nombre: 'Redux' }
-    ],
+    proyectos: [],
     formulario: false
   }
 
@@ -24,6 +32,14 @@ const ProyectoState = props => {
     })
   }
 
+  //obtener los proyectos
+  const obtenerProyectos = () => {
+    dispatch({
+      type: OBTENER_PROYECTOS,
+      payload: proyectos
+    })
+  }
+
 
 
   return (
@@ -31,7 +47,8 @@ const ProyectoState = props => {
       value={{
         proyectos: state.proyectos,
         formulario: state.formulario,
-        mostrarFormulario
+        mostrarFormulario,
+        obtenerProyectos
       }}
     >
       {props.children}
