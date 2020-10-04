@@ -5,21 +5,22 @@ import TareaReducer from './tareaReducer';
 import {
   TAREAS_PROYECTO,
   AGREGAR_TAREA,
-  VALIDAR_TAREA } from '../../types'
+  VALIDAR_TAREA,
+  ELIMINAR_TAREA } from '../../types'
 
 const TareaState = props => {
   const initialState = {
     tareas: [
-      { nombre: 'Elegir plataforma', estado: true, proyectoId: 1 },
-      { nombre: 'Elegir colores', estado: true, proyectoId: 2  },
-      { nombre: 'Elegir pagos', estado: false, proyectoId: 3  },
-      { nombre: 'Elegir antivirus', estado: true, proyectoId: 4  },
-      { nombre: 'Elegir plataforma', estado: true, proyectoId: 1 },
-      { nombre: 'Elegir colores', estado: true, proyectoId: 2  },
-      { nombre: 'Elegir pagos', estado: false, proyectoId: 3  },
-      { nombre: 'Elegir plataforma', estado: true, proyectoId: 1 },
-      { nombre: 'Elegir colores', estado: true, proyectoId: 2  },
-      { nombre: 'Elegir pagos', estado: false, proyectoId: 3  },
+      { id: 10, nombre: 'Elegir plataforma', estado: true, proyectoId: 1 },
+      { id: 1, nombre: 'Elegir colores', estado: true, proyectoId: 2  },
+      { id: 2, nombre: 'Elegir pagos', estado: false, proyectoId: 3  },
+      { id: 3, nombre: 'Elegir antivirus', estado: true, proyectoId: 4  },
+      { id: 4, nombre: 'Elegir plataforma', estado: true, proyectoId: 1 },
+      { id: 5, nombre: 'Elegir colores', estado: true, proyectoId: 2  },
+      { id: 6, nombre: 'Elegir pagos', estado: false, proyectoId: 3  },
+      { id: 7, nombre: 'Elegir plataforma', estado: true, proyectoId: 1 },
+      { id: 8, nombre: 'Elegir colores', estado: true, proyectoId: 2  },
+      { id: 9, nombre: 'Elegir pagos', estado: false, proyectoId: 3  },
     ],
     tareasproyecto: null,
     errortarea: false
@@ -52,6 +53,14 @@ const TareaState = props => {
     })
   }
 
+  //eliminar por id
+  const eliminarTarea = id => {
+    dispatch({
+      type: ELIMINAR_TAREA,
+      payload: id
+    })
+  }
+
   return(
     <TareaContext.Provider
       value={{
@@ -60,7 +69,8 @@ const TareaState = props => {
         errortarea: state.errortarea,
         obtenerTareas,
         agregarTarea,
-        validarTarea
+        validarTarea,
+        eliminarTarea
       }}
     >
       {props.children}
