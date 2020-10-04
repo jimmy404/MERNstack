@@ -14,12 +14,7 @@ const ListadoTareas = () => {
     //array destructuring para extraer proyecto actual
     const [proyectoActual] = proyecto;
 
-  const tareasProyecto = [
-    { nombre: 'Elegir plataforma', estado: true },
-    { nombre: 'Elegir colores', estado: true },
-    { nombre: 'Elegir pagos', estado: false },
-    { nombre: 'Elegir antivirus', estado: true }
-  ];
+  const tareasProyecto = [];
 
   //elimina un proyecto
   const onClickEliminar = () => {
