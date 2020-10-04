@@ -8,7 +8,8 @@ import {
   VALIDAR_TAREA,
   ELIMINAR_TAREA,
   ESTADO_TAREA,
-  TAREA_ACTUAL} from '../../types'
+  TAREA_ACTUAL,
+  ACTUALIZAR_TAREA} from '../../types'
 
 const TareaState = props => {
   const initialState = {
@@ -80,6 +81,13 @@ const TareaState = props => {
       })
     }
 
+    //edita modifica una tarea
+    const actualizarTarea = tarea => {
+      dispatch({
+        type: ACTUALIZAR_TAREA,
+        payload: tarea
+      })
+    }
 
   return(
     <TareaContext.Provider
@@ -93,7 +101,8 @@ const TareaState = props => {
         validarTarea,
         eliminarTarea,
         cambiaEstadoTarea,
-        guardarTareaActual
+        guardarTareaActual,
+        actualizarTarea
       }}
     >
       {props.children}
