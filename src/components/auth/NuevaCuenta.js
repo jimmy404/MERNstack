@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
-import AlertaState from '../../context/alertas/alertaState';
 import AuthContext from '../../context/autenticacion/authContext';
 
 const NuevaCuenta = (props) => {
