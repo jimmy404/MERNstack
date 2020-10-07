@@ -18,7 +18,7 @@ const Login = (props) => {
       props.history.push('/proyectos')
     }
     if(mensaje){
-      mostrarAlerta(mensaje.msj, mensaje.categoria);
+      mostrarAlerta(mensaje.msg, mensaje.categoria);
     }
   }, [mensaje, autenticado, props.history])
 
