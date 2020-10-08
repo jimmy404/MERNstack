@@ -12,7 +12,7 @@ const Tarea = ({tarea}) => {
       const tareasContext = useContext(tareaContext);
       const { eliminarTarea,
               obtenerTareas,
-              cambiaEstadoTarea,
+              actualizarTarea,
               guardarTareaActual } = tareasContext;
 
       //extraer el proyecto
@@ -31,7 +31,7 @@ const Tarea = ({tarea}) => {
         } else {
           tarea.estado = true
         }
-        cambiaEstadoTarea(tarea);
+        actualizarTarea(tarea);
       }
 
       //agrega tarea actual cuando el usuario la quiere editar
