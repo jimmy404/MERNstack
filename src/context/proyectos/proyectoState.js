@@ -16,12 +16,6 @@ import clienteAxios from '../../config/axios';
 
 const ProyectoState = props => {
 
-  const proyectos = [
-    { id: 1, nombre: 'Tienda virtual' },
-    { id: 2, nombre: 'Intranet' },
-    { id: 3, nombre: 'Redux' }
-  ];
-
   const initialState = {
     proyectos: [],
     formulario: false,
@@ -40,22 +34,32 @@ const ProyectoState = props => {
   }
 
   //obtener los proyectos
-  const obtenerProyectos = () => {
-    dispatch({
-      type: OBTENER_PROYECTOS,
-      payload: proyectos
-    })
+  const obtenerProyectos = async () => {
+    try {
+      const resultado = await clienteAxios.get('/api/proyectos');
+      dispatch({
+        type: OBTENER_PROYECTOS,
+        payload: resultado.data.proyectos
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //Agregar nuevo proyecto
   const agregarProyecto = async proyecto => {
 
-    try {
-      const resultado = await clienteAxios.post('/api/proyectos', proyecto);
-      console.log(resultado);
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+    const resultado = await clienteAxios.post('/api/proyectos', proyecto);
+    console.log(resultado);
+    //inserta proyecto en el state
+    dispatch({
+      type: AGREGAR_PROYECTO,
+      payload: resultado.data
+    })
+  } catch (error) {
+    console.log(error);
+  }
 
   }
 
