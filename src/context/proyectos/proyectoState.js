@@ -5,6 +5,7 @@ import {
   FORMULARIO_PROYECTO,
   OBTENER_PROYECTOS,
   AGREGAR_PROYECTO,
+  PROYECTO_ERROR,
   VALIDAR_FORMULARIO,
   PROYECTO_ACTUAL,
   ELIMINAR_PROYECTO } from '../../types';
@@ -20,7 +21,8 @@ const ProyectoState = props => {
     proyectos: [],
     formulario: false,
     errorformulario: false,
-    proyecto: null
+    proyecto: null,
+    mensaje: null
   }
 
   //dispatch para ejecutar las acciones
@@ -42,25 +44,38 @@ const ProyectoState = props => {
         payload: resultado.data.proyectos
       })
     } catch (error) {
-      console.log(error);
+      const alerta = {
+        msg: 'Hubo un error',
+        categoria: 'alerta-error'
+      }
+      dispatch({
+        type: PROYECTO_ERROR,
+        payload: alerta
+      })
     }
   }
 
   //Agregar nuevo proyecto
   const agregarProyecto = async proyecto => {
 
-  try {
-    const resultado = await clienteAxios.post('/api/proyectos', proyecto);
-    console.log(resultado);
-    //inserta proyecto en el state
-    dispatch({
-      type: AGREGAR_PROYECTO,
-      payload: resultado.data
-    })
-  } catch (error) {
-    console.log(error);
-  }
-
+    try {
+      const resultado = await clienteAxios.post('/api/proyectos', proyecto);
+      console.log(resultado);
+      //inserta proyecto en el state
+      dispatch({
+        type: AGREGAR_PROYECTO,
+        payload: resultado.data
+      })
+    } catch (error) {
+        const alerta = {
+          msg: 'Hubo un error',
+          categoria: 'alerta-error'
+        }
+        dispatch({
+          type: PROYECTO_ERROR,
+          payload: alerta
+        })
+      }
   }
 
   //valida el formulario por error
@@ -87,7 +102,14 @@ const ProyectoState = props => {
         payload: proyectoId
       })
     } catch (error) {
-      console.log(error);
+      const alerta = {
+        msg: 'Hubo un error',
+        categoria: 'alerta-error'
+      }
+      dispatch({
+        type: PROYECTO_ERROR,
+        payload: alerta
+      })
     }
   }
 
@@ -99,6 +121,7 @@ const ProyectoState = props => {
         formulario: state.formulario,
         errorformulario: state.errorformulario,
         proyecto: state.proyecto,
+        mensaje: state.mensaje,
         mostrarError,
         mostrarFormulario,
         obtenerProyectos,

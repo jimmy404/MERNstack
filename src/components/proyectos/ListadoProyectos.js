@@ -2,22 +2,31 @@ import React, { useContext, useEffect } from 'react';
 import Proyecto from './Proyecto';
 import proyectoContext from '../../context/proyectos/proyectoContext'
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import AlertaContext from '../../context/alertas/alertaContext';
 
 const ListadoProyectos = () => {
 
   const proyectosContext = useContext(proyectoContext);
-  const { proyectos, obtenerProyectos } = proyectosContext;
+  const { mensaje, proyectos, obtenerProyectos } = proyectosContext;
+
+  const alertaContext = useContext(AlertaContext);
+  const { alerta, mostrarAlerta } = alertaContext;
 
   useEffect(() => {
+    //si hay un error
+    if(mensaje){
+      mostrarAlerta(mensaje.msg, mensaje.categoria);
+    }
     obtenerProyectos();
     //eslint-disable-next-line
-  }, []);
+  }, [mensaje]);
 
   if(proyectos.length === 0) return <p>No hay proyectos, crea uno</p>;
 
 
   return(
     <ul className="listado-proyectos">
+      {alerta ? (<div className={`alerta ${alerta.categoria}`}>{alerta.msg}</div>) : null}
       <TransitionGroup>
         {proyectos.map(proyecto => (
           <CSSTransition
